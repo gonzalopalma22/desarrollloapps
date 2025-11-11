@@ -2,13 +2,20 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- ✅ Permisos necesarios -->
+    <!-- Permisos generales -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
-    <uses-permission android:name="android.permission.CAMERA" />
 
-    <!-- ✅ Cámara opcional -->
-    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <!-- Permisos para cámara y galería -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+
+    <!-- 📱 Marca la cámara como opcional (no todos los dispositivos la tienen) -->
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
 
     <application
         android:allowBackup="true"
@@ -21,7 +28,7 @@
         android:theme="@style/Theme.Booksyfinal"
         tools:targetApi="31">
 
-        <!-- ✅ Actividad principal -->
+        <!-- 🚀 Actividad principal -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -33,7 +40,7 @@
             </intent-filter>
         </activity>
 
-        <!-- ✅ Provider para cámara -->
+        <!-- FileProvider para cámara -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -43,6 +50,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-    </application>
 
+    </application>
 </manifest>
